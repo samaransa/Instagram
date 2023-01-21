@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_7mdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/_35mdp"
+        android:layout_height="@dimen/_35mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/model"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginStart="@dimen/_12mdp"/>
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="samaru574"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_10font_mdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_10mdp"
+        android:layout_marginTop="@dimen/_7mdp"
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/receivedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2 d"
+        android:textSize="@dimen/_8font_mdp"
+        android:layout_marginStart="@dimen/_4mdp"
+        app:layout_constraintStart_toEndOf="@id/username"
+        app:layout_constraintTop_toTopOf="@id/username"
+        app:layout_constraintBottom_toBottomOf="@id/username"/>
+
+    <TextView
+        android:id="@+id/commentMessageBody"
+        android:layout_width="@dimen/_245mdp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_1mdp"
+        android:textColor="@color/black"
+        android:layout_marginTop="-1dp"
+        android:text="You are looking good bro."
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toBottomOf="@id/username"
+        android:layout_marginStart="@dimen/_9mdp"
+        android:maxLines="5"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

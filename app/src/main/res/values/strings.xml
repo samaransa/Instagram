@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Instagram</string>
+    <string name="instagram">Instagram</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="log_in">Log In</string>
+    <string name="phone">Phone number, email address or username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgotten_your_loogin_details">Forgotten your loogin details?</string>
+    <string name="get_help_with_logging_in"> Get help with logging in.</string>
+    <string name="or">OR</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="email_address">Email address</string>
+    <string name="phone_number">Phone number</string>
+    <string name="next">Next</string>
+    <string name="Next">Next</string>
+    <string name="show_password">Show password</string>
+    <string name="Home">Home</string>
+    <string name="Search">Search</string>
+    <string name="Reels">Reels</string>
+    <string name="Likes">Likes</string>
+    <string name="Profile">Profile</string>
+    <string name="instagram1">Instagram</string>
+</resources>

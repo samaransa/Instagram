@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_12font_mdp"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragments.BottomSheetFragment">
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="84dp"
+        android:layout_height="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/minus"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgS"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/set_one"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10font_mdp"
+            android:text="Setting"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgS"
+            app:layout_constraintStart_toEndOf="@id/imgS"
+            app:layout_constraintTop_toTopOf="@id/imgS" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/yourActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgYa"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/time_left"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11font_mdp"
+            android:text="Your Activity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgYa"
+            app:layout_constraintStart_toEndOf="@id/imgYa"
+            app:layout_constraintTop_toTopOf="@id/imgYa" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/archive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourActivity">
+
+        <ImageView
+            android:id="@+id/imgA"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/time"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12font_mdp"
+            android:text="Archive"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgA"
+            app:layout_constraintStart_toEndOf="@id/imgA"
+            app:layout_constraintTop_toTopOf="@id/imgA" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/qrCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/archive">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgQ"
+            android:layout_width="@dimen/_21mdp"
+            android:layout_height="@dimen/_21mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/qr_code"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10font_mdp"
+            android:text="QR code"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgQ"
+            app:layout_constraintStart_toEndOf="@id/imgQ"
+            app:layout_constraintTop_toTopOf="@id/imgQ" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/saved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qrCode">
+
+        <ImageView
+            android:id="@+id/imgSa"
+            android:layout_width="@dimen/_18mdp"
+            android:layout_height="@dimen/_20mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/save_instagram"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_14font_mdp"
+            android:text="Saved"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgSa"
+            app:layout_constraintStart_toEndOf="@id/imgSa"
+            app:layout_constraintTop_toTopOf="@id/imgSa" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/digitalCollectibles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saved">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgD"
+            android:layout_width="@dimen/_21mdp"
+            android:layout_height="@dimen/_21mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/digital"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11font_mdp"
+            android:text="Digital collectibles"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgD"
+            app:layout_constraintStart_toEndOf="@id/imgD"
+            app:layout_constraintTop_toTopOf="@id/imgD" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/closeFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/digitalCollectibles">
+
+        <ImageView
+            android:id="@+id/imgCs"
+            android:layout_width="@dimen/_17mdp"
+            android:layout_height="@dimen/_21mdp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/list"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Close friends"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgCs"
+            app:layout_constraintStart_toEndOf="@id/imgCs"
+            app:layout_constraintTop_toTopOf="@id/imgCs" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/favourites"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/closeFriends">
+
+        <ImageView
+            android:id="@+id/imgF"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/favourites"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Favourites"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/imgF"
+            app:layout_constraintStart_toEndOf="@id/imgF"
+            app:layout_constraintTop_toTopOf="@id/imgF" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/logoutLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favourites">
+
+        <ImageView
+            android:id="@+id/logout"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:src="@drawable/logout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:text="Logout"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/logout"
+            app:layout_constraintStart_toEndOf="@id/logout"
+            app:layout_constraintTop_toTopOf="@id/logout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

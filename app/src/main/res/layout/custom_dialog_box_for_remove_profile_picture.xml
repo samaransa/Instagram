@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_18mdp"
+    android:gravity="center"
+    android:background="@drawable/dialog_bg"
+    android:orientation="vertical"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/txt_remove_photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_60font_mdp"
+        android:layout_marginEnd="@dimen/_60font_mdp"
+
+        android:layout_marginTop="@dimen/_24mdp"
+        android:gravity="center"
+        android:maxLines="3"
+        android:text="Remove photo from Instagram and Facebook?"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15font_mdp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/descri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_33mdp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/_33mdp"
+        android:gravity="center"
+        android:maxLines="3"
+        android:text="Deleting this profile picture will delete the picture and any related posts on Facebook."
+        android:textSize="@dimen/_11font_mdp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:background="#B9B9B9"
+        android:layout_height=".4dp"/>
+
+    <TextView
+        android:id="@+id/remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_14mdp"
+        android:text="Remove"
+        android:textColor="#0081BB"
+        android:textSize="@dimen/_12font_mdp"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="14dp"
+        android:background="#B9B9B9"
+        android:layout_height=".4dp"/>
+
+    <TextView
+        android:id="@+id/manageSync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Manage sync settings"
+        android:textSize="@dimen/_12font_mdp"
+        android:layout_marginTop="@dimen/_14font_mdp"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="14dp"
+        android:background="#B9B9B9"
+        android:layout_height=".4dp"/>
+    <TextView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_12font_mdp"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_10font_mdp"
+        />
+
+</LinearLayout>

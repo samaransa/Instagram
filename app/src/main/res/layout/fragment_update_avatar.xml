@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragments.UpdateAvatarFragment">
+
+    <TextView
+        android:id="@+id/txt"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_17mdp"
+        android:text="Show another side of your self with your avatar."/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create avatar"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:gravity="center"
+        android:padding="@dimen/_8mdp"
+        android:background="@drawable/btn_complete_profile_bg"
+        app:layout_constraintTop_toBottomOf="@id/txt"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginLeft="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_14font_mdp"
+        android:layout_marginEnd="@dimen/_8mdp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

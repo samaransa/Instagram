@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfileActivity"
+    android:id="@+id/constraintLayoutOfEditActivity"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/toolbarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/cancel_button"
+            android:layout_width="@dimen/_22font_mdp"
+            android:layout_height="@dimen/_21font_mdp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/cut"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.482" />
+
+        <TextView
+            android:id="@+id/txtEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24mdp"
+            android:text="Edit Profile"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_15font_mdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cancel_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/done"
+            android:layout_width="@dimen/_17font_mdp"
+            android:layout_height="@dimen/_23font_mdp"
+            android:layout_marginEnd="@dimen/_18mdp"
+            android:src="@drawable/check"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/_64mdp"
+        android:layout_height="@dimen/_64mdp"
+        android:layout_marginTop="@dimen/_14mdp"
+        android:src="@drawable/usee"
+        app:layout_constraintEnd_toStartOf="@+id/avatar"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbarLayout" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/avatar"
+        android:layout_width="@dimen/_52mdp"
+        android:layout_height="@dimen/_52mdp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:padding="22dp"
+        android:src="@drawable/happy"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/profileImage"
+        app:layout_constraintTop_toTopOf="@id/profileImage"
+        app:layout_constraintVertical_bias="0.416" />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/avatar_bg"
+        app:layout_constraintStart_toStartOf="@id/avatar"
+        app:layout_constraintEnd_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="@id/avatar"
+        app:layout_constraintBottom_toBottomOf="@id/avatar"/>
+
+    <TextView
+        android:id="@+id/txtEditPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Edit picture or avatar"
+        android:textColor="#03A9F4"
+        android:textSize="@dimen/_11font_mdp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileImage" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginEnd="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_12font_mdp"
+        app:layout_constraintTop_toBottomOf="@id/txtEditPicture"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="3dp"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/_12font_mdp"
+            android:paddingBottom="@dimen/_10mdp"
+            android:paddingTop="@dimen/_10mdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Name" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginEnd="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_4font_mdp"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="3dp"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/_12font_mdp"
+            android:paddingBottom="@dimen/_10mdp"
+            android:paddingTop="@dimen/_10mdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Username" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/bio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginEnd="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_4font_mdp"
+        app:layout_constraintTop_toBottomOf="@id/username"
+        app:layout_constraintStart_toStartOf="parent"
+        android:padding="3dp"
+        app:hintTextColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textSize="@dimen/_12font_mdp"
+            android:paddingBottom="@dimen/_10mdp"
+            android:paddingTop="@dimen/_10mdp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:hint="Bio" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/addLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Add Link"
+        android:textSize="@dimen/_12font_mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bio"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginStart="@dimen/_9mdp"/>
+
+    <LinearLayout
+        android:id="@+id/switchToProfessionalAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addLink"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8mdp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/_9font_mdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Switch to Professional account"
+            android:layout_marginStart="@dimen/_1mdp"
+            android:textSize="@dimen/_13font_mdp"
+            android:textColor="#078EFA"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/personalInformationSetting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switchToProfessionalAccount"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8mdp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="@dimen/_6font_mdp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Personal information settings"
+            android:layout_marginStart="@dimen/_1mdp"
+            android:textSize="@dimen/_13font_mdp"
+            android:textColor="#078EFA"/>
+
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/_21mdp"
+        android:layout_height="@dimen/_22mdp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/done"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/_17mdp"
+        android:layout_marginTop="@dimen/_10mdp"
+        app:layout_constraintBottom_toBottomOf="@id/done"
+         />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

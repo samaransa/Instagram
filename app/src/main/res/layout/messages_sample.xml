@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_8mdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/_50mdp"
+        android:layout_height="@dimen/_50mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/model"
+         app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginStart="@dimen/_12mdp"/>
+    <TextView
+        android:id="@+id/profileLName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Monika Singh"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11font_mdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_14mdp"
+        android:layout_marginTop="@dimen/_15mdp"
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active Now"
+        android:layout_marginTop="-16dp"
+        app:layout_constraintTop_toBottomOf="@id/profileLName"
+        app:layout_constraintStart_toStartOf="@id/profileLName"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"/>
+
+    <ImageView
+        android:id="@+id/camera"
+        android:layout_width="@dimen/_18mdp"
+        android:layout_height="@dimen/_24mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_18mdp"
+        android:src="@drawable/camera_three"
+        app:layout_constraintTop_toTopOf="@id/profileImage"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

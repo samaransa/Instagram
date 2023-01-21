@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MessageDetailsActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutFirst"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/_20mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="14dp"
+            android:src="@drawable/back_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="@dimen/_27mdp"
+            android:layout_height="@dimen/_27mdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/model"
+            android:layout_marginStart="@dimen/_18mdp"
+            app:layout_constraintStart_toEndOf="@id/back"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10mdp"
+            android:text="Zehen Sameer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/_8mdp"
+            app:layout_constraintStart_toEndOf="@id/profileImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-2dp"
+            android:text="Active 4h ago"
+            android:textSize="@dimen/_9font_mdp"
+            app:layout_constraintBottom_toBottomOf="@id/profileImage"
+            app:layout_constraintStart_toStartOf="@id/name"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/videoCall"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_26mdp"
+            android:src="@drawable/video_camera_two"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="21dp"/>
+
+        <ImageView
+            android:id="@+id/audioCall"
+            android:layout_width="@dimen/_18mdp"
+            android:layout_height="@dimen/_18mdp"
+            android:src="@drawable/phone_call"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/videoCall"
+            android:layout_marginEnd="@dimen/_19mdp"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayoutFirst"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/messageWritingHere"/>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/messageWritingHere"
+        android:layout_width="@dimen/_288mdp"
+        android:layout_height="@dimen/_39mdp"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginEnd="@dimen/_8mdp"
+        android:layout_marginBottom="@dimen/_5mdp"
+        android:background="@drawable/edit_text_bg_for_message_detail_activity"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cameraIcon"
+            android:layout_width="@dimen/_31mdp"
+            android:layout_height="@dimen/_31mdp"
+            android:layout_marginStart="@dimen/_4mdp"
+            android:background="@drawable/round_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/inIcon"
+                android:layout_width="@dimen/_19mdp"
+                android:layout_height="@dimen/_19mdp"
+                android:src="@drawable/camera_full"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <EditText
+            android:id="@+id/edTypeMessage"
+            android:layout_width="@dimen/_170mdp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg_for_message_detail_activity"
+            android:hapticFeedbackEnabled="false"
+            android:hint="Message...."
+            android:inputType="textPersonName"
+            android:padding="@dimen/_6mdp"
+            android:maxLines="14"
+            android:textSize="@dimen/_13font_mdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cameraIcon"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.538" />
+
+        <ImageView
+            android:id="@+id/microPhone"
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_17mdp"
+            android:src="@drawable/mic"
+            app:layout_constraintStart_toEndOf="@id/edTypeMessage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/openGalley"
+            android:layout_width="@dimen/_22mdp"
+            android:layout_height="@dimen/_22mdp"
+            android:src="@drawable/gallery_two"
+            app:layout_constraintStart_toEndOf="@id/microPhone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/sticker"
+            android:layout_marginEnd="@dimen/_4mdp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/sticker"
+            android:layout_width="@dimen/_16mdp"
+            android:layout_height="@dimen/_16mdp"
+            android:src="@drawable/sticker"
+            android:layout_marginEnd="@dimen/_7mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/openGalley"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="353dp" />
+
+
+        <TextView
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15mdp"
+            android:text="Send"
+            android:textColor="@color/send_btn"
+            android:textSize="@dimen/_14font_mdp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

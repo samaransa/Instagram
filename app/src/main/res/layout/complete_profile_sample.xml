@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingRight="@dimen/_7font_mdp"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="210dp"
+        android:layout_height="210dp"
+        android:padding="@dimen/_5mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/cardview_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_44mdp"
+            android:layout_height="@dimen/_44mdp"
+            android:background="@drawable/comple_profile_view_bg"
+            android:layout_marginTop="@dimen/_20mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@id/image"
+                android:layout_width="@dimen/_24mdp"
+                android:layout_height="@dimen/_24mdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/profiletwo"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/addBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4font_mdp"
+            android:text="Add bio"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11font_mdp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView" />
+
+        <TextView
+            android:id="@+id/about"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1font_mdp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="Tell your followers a little bit about yourself"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_8font_mdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/addBio" />
+
+        <TextView
+            android:id="@+id/btnAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10mdp"
+            android:background="@drawable/btn_complete_profile_bg"
+            android:gravity="center"
+            android:paddingStart="@dimen/_8mdp"
+            android:paddingTop="@dimen/_5mdp"
+            android:paddingEnd="@dimen/_8mdp"
+            android:paddingBottom="@dimen/_5mdp"
+            android:text="Add Bio"
+            android:textColor="#F8F8F8"
+            android:textSize="@dimen/_10font_mdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/about" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp"
+    android:id="@+id/llRow"
+    android:background="#D5CFD6"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/instagramLgo"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/instagram"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+    <TextView
+        android:id="@+id/toastMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is toast"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/instagramLgo"
+        app:layout_constraintStart_toEndOf="@id/instagramLgo"
+        app:layout_constraintBottom_toBottomOf="@id/instagramLgo"
+        android:layout_marginStart="14dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

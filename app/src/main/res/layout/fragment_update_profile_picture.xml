@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ProfileFragments.UpdateProfilePictureFragment">
+
+
+    <LinearLayout
+        android:id="@+id/newProfilePicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_12mdp"
+            android:src="@drawable/gallery"
+            android:layout_marginLeft="@dimen/_10mdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_11mdp"
+            android:text="New profile picture"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12font_mdp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/removeProfilePicture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/newProfilePicture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="@dimen/_19mdp"
+            android:layout_height="@dimen/_19mdp"
+            android:layout_marginStart="@dimen/_12mdp"
+            android:src="@drawable/delete"
+            android:layout_marginLeft="@dimen/_10mdp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_12mdp"
+            android:text="Remove current picture"
+            android:textColor="#D7024B"
+            android:textSize="@dimen/_11font_mdp" />
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

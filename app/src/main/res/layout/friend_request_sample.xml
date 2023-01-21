@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/_6mdp"
+    android:id="@+id/cons"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profileImage"
+        android:layout_width="@dimen/_45mdp"
+        android:layout_height="@dimen/_45mdp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/model"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_8mdp"
+        android:layout_marginStart="@dimen/_12mdp"/>
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="samaru574"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12font_mdp"
+        android:textStyle="bold"
+        android:layout_marginStart="@dimen/_14mdp"
+        android:layout_marginTop="@dimen/_13mdp"
+        app:layout_constraintStart_toEndOf="@id/profileImage"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/profileName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-14dp"
+        android:text="Samar Khan"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"
+        app:layout_constraintStart_toStartOf="@id/username"
+        app:layout_constraintTop_toBottomOf="@id/username" />
+
+    <TextView
+        android:id="@+id/buttonFollow"
+        android:layout_width="@dimen/_58mdp"
+        android:layout_height="@dimen/_25mdp"
+        android:textSize="@dimen/_10font_mdp"
+        android:text="Follow"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/btn_follow_background"
+        android:textColor="#FFFFFF"
+        android:layout_marginEnd="@dimen/_12mdp"
+        app:layout_constraintTop_toTopOf="@id/profileImage"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"
+        app:layout_constraintEnd_toStartOf="@id/cut"/>
+
+
+
+
+    <ImageView
+        android:id="@+id/cut"
+        android:layout_width="@dimen/_10mdp"
+        android:layout_height="@dimen/_10mdp"
+        android:src="@drawable/cut"
+        android:layout_marginEnd="@dimen/_16mdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/buttonFollow"
+        app:layout_constraintBottom_toBottomOf="@id/buttonFollow"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

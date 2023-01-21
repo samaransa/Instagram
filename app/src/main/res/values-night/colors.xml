@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="light_gray">#FFFFFF</color>
+    <color name="light_black">#000000</color>
+    <color name="edt_profile">#4B4B4B</color>
+    <color name="dialog_background">#303030</color>
+    <color name="search_bg_color">#3C3B3B</color>
+    <color name="message_edit_text_bg">#323131</color>
+    <color name="bottom_sheet_white">#666666</color>
+    <color name="send_btn">#F6F6F6</color>
+
+
+
+
+</resources>
