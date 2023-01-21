@@ -10,7 +10,7 @@ import com.example.instagram.ProfileFragments.GridFragment;
 import com.example.instagram.R;
 
 public class ViewPagerAdapterForProfile extends FragmentStateAdapter {
-    int [] images = {R.drawable.grid, R.drawable.con};
+    int [] images = {R.drawable.grid, R.drawable.con_main};
     public ViewPagerAdapterForProfile(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
