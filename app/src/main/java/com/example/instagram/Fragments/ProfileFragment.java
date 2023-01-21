@@ -50,7 +50,7 @@ import java.util.ArrayList;
 public class ProfileFragment extends Fragment {
     FragmentProfileBinding binding;
     ArrayList<Users> list = new ArrayList<>();
-    int[] images = {R.drawable.gritwo, R.drawable.con};
+    int[] images = {R.drawable.gritwo, R.drawable.con_main};
     FirebaseAuth auth;
     FirebaseDatabase database;
     ActivityResultLauncher<String> launcher;
