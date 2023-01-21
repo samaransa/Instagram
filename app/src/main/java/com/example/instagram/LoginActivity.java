@@ -3,14 +3,19 @@ package com.example.instagram;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
     FirebaseAuth auth;
     FirebaseUser user;
+    boolean passwordVisible;
+
 
 
     @Override
@@ -40,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        passwordToggle(); // calling passwordToggleMethod;
 
 
         binding.txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -100,6 +108,40 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
+    @SuppressLint("ClickableViewAccessibility")
+    public void passwordToggle() {
+        binding.edPassword.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right = 2;
+                if (event.getAction()== MotionEvent.ACTION_UP){
+                    if(event.getRawX()>=binding.edPassword.getRight()-binding.edPassword.getCompoundDrawables()[Right].getBounds().width()){
+                        int selection = binding.edPassword.getSelectionEnd();
+                        if (passwordVisible){
+                            // set drawable image here.
+                            binding.edPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibility_off, 0);
+                            // for hide password
+                            binding.edPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordVisible =false;
+                        }else {
+                            binding.edPassword.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, R.drawable.visibility_on, 0);
+                            // for hide password
+                            binding.edPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordVisible =true;
+                        }
+
+                        binding.edPassword.setSelection(selection);
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });
+
+    }
+
 
     @Override
     protected void onStart() {

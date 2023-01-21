@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.PhoneNumber">
     <EditText
@@ -13,6 +14,8 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/ed_bg"
         android:hint="@string/phone_number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
         android:inputType="phone"
         android:padding="13dp"
         android:textSize="15sp"
@@ -32,6 +35,7 @@
         android:layout_marginLeft="40dp"
         android:layout_marginEnd="40dp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:maxLines="3"
         android:layout_marginTop="16dp"
         android:text="You may receive SMS notifications from us for security and login purposes."
