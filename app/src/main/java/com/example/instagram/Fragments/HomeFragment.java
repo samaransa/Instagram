@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -23,15 +24,20 @@ import com.example.instagram.Adapters.StoryAdapter;
 import com.example.instagram.CropperActivity;
 import com.example.instagram.MessageActivity;
 import com.example.instagram.Models.Posts;
-import com.example.instagram.Models.Stories;
+import com.example.instagram.Models.Story;
 import com.example.instagram.Models.Users;
+import com.example.instagram.Models.UsersStories;
 import com.example.instagram.R;
 import com.example.instagram.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -42,16 +48,20 @@ import com.squareup.picasso.Picasso;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class HomeFragment extends Fragment {
-    ArrayList<Stories> list = new ArrayList<>();
+    ArrayList<Story> list = new ArrayList<>();
     ArrayList<Posts> arrayList = new ArrayList<>();
     FragmentHomeBinding binding;
     FirebaseAuth auth;
+    FirebaseStorage storage;
     FirebaseDatabase database;
     ActivityResultLauncher<String> cropImage;
     String tag = "homeFragment";
+    ActivityResultLauncher<String> galleryLauncher;
+    Uri source;
 
 
 
@@ -68,6 +78,7 @@ public class HomeFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         storyWork();  // calling method
         postWork();
@@ -117,13 +128,76 @@ public class HomeFragment extends Fragment {
 
     // All work for story
     public void storyWork(){
-        list.add(new Stories("baby_naz", R.drawable.brunetee ));
-        list.add(new Stories("range_rox", R.drawable.chris ));
-        list.add(new Stories("son_pari", R.drawable.modelgirl ));
+
         binding.addStoryRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.addStoryRv.setNestedScrollingEnabled(false);
         binding.horizontalSv.setHorizontalScrollBarEnabled(false);
-        binding.addStoryRv.setAdapter(new StoryAdapter(getContext(), list));
+        StoryAdapter adapter = new StoryAdapter(getContext(), list);
+        binding.addStoryRv.setAdapter(adapter);
+        database.getReference().child("stories").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    list.clear();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        Story story  = new Story();
+                        story.setStoryBy(dataSnapshot.getKey());
+                        story.setStoryAt(dataSnapshot.child("postedBy").getValue(Long.class));
+
+                        ArrayList<UsersStories> stories = new ArrayList<>();
+                        for (DataSnapshot snapshot1 : dataSnapshot.child("userStories").getChildren()){
+                            UsersStories usersStories =  snapshot1.getValue(UsersStories.class);
+                            stories.add(usersStories);
+
+                        }
+                        story.setStories(stories);
+                        list.add(story);
+
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        binding.addYourStoryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                galleryLauncher.launch("image/*");
+            }
+        });
+
+
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.GetContent(), new ActivityResultCallback<Uri>() {
+            @Override
+            public void onActivityResult(Uri result) {
+                binding.progressBar.setVisibility(View.VISIBLE);
+                binding.profileImage.setImageURI(result);
+                source = result;
+                if (source!=null){
+                    uploadStory();
+
+                }else {
+                    try {
+                        uploadStory();
+                    }catch (Exception e){
+                        Log.d(tag, "Result/resource is Empty");
+                        binding.progressBar.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+
+
+
+            }
+        });
+
+
     }
     // All work for post image;
     public void postWork(){
@@ -181,8 +255,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-
-
     public void ImagePermission(){
         Dexter.withContext(getContext())
                 .withPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -219,4 +291,56 @@ public class HomeFragment extends Fragment {
             binding.profileImage.setImageURI(uri);
         }
     }
+
+    public  void uploadStory(){
+        final StorageReference reference
+                = storage.getReference()
+                .child("stories")
+                .child(auth.getUid())
+                .child(new Date().getTime() + "");
+        reference.putFile(source).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Story story = new Story();
+                        story.setStoryAt(new Date().getTime());
+                        database.getReference()
+                                .child("stories")
+                                .child(auth.getUid())
+                                .child("postedBy")
+                                .setValue(story.getStoryAt()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void unused) {
+                                        UsersStories stories = new UsersStories(uri.toString(), story.getStoryAt());
+                                        database.getReference()
+                                                .child("stories")
+                                                .child(auth.getUid())
+                                                .child("userStories")
+                                                .push()
+                                                .setValue(stories)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void unused) {
+                                                        binding.progressBar.setVisibility(View.INVISIBLE);
+                                                        Toast.makeText(getContext(), "Story Uploaded", Toast.LENGTH_SHORT).show();
+
+                                                    }
+                                                });
+
+                                    }
+                                });
+
+                    }
+                });
+
+            }
+        });
+
+    }
+
+
+
+
 }

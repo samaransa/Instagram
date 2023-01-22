@@ -117,7 +117,7 @@
                             app:layout_constraintBottom_toBottomOf="@id/profileImage"
                             app:layout_constraintEnd_toEndOf="@id/profileImage"/>
                         <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/addYourStory"
+                            android:id="@+id/addYourStoryBtn"
                             android:layout_width="21dp"
                             android:layout_height="21dp"
                             android:src="@drawable/plus"
@@ -137,6 +137,16 @@
                             app:layout_constraintTop_toBottomOf="@id/view1"
                             app:layout_constraintStart_toStartOf="@id/profileImage"
                             app:layout_constraintEnd_toEndOf="@id/profileImage"/>
+
+                        <ProgressBar
+                            android:id="@+id/progressBar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="invisible"
+                            app:layout_constraintStart_toStartOf="@id/profileImage"
+                            app:layout_constraintEnd_toEndOf="@id/profileImage"
+                            app:layout_constraintTop_toTopOf="@id/profileImage"
+                            app:layout_constraintBottom_toBottomOf="@id/profileImage"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -160,6 +170,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/horizontalSv"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -9,9 +9,7 @@ import android.view.View;
 
 import com.example.instagram.Adapters.MessageAdapter;
 import com.example.instagram.Adapters.OnlineAdapter;
-import com.example.instagram.Models.Message;
 import com.example.instagram.Models.Online;
-import com.example.instagram.Models.Stories;
 import com.example.instagram.Models.Users;
 import com.example.instagram.databinding.ActivityMessageBinding;
 import com.google.firebase.auth.FirebaseAuth;
