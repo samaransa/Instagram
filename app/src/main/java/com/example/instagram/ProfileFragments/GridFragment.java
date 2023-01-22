@@ -55,6 +55,7 @@ public class GridFragment extends Fragment {
         binding.uploadedPhotoRV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.uploadedPhotoRV.setNestedScrollingEnabled(false);
         ProfileFragmentPhotoUploadedAdapter adapter = new ProfileFragmentPhotoUploadedAdapter(getContext(), postlist);
+
         binding.uploadedPhotoRV.setAdapter(adapter);
         database.getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override

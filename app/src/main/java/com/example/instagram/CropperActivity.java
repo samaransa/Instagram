@@ -86,20 +86,17 @@ public class CropperActivity extends AppCompatActivity {
                                         Toast.makeText(CropperActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
                                         Log.d(tag, "Uploaded Successfully");
 
-
-                                    /*
-                                        Users users = new Users();
-                                        database.getReference().child("Users")
-                                                .child(auth.getUid())
-                                                .child("postCount")
-                                                .setValue(users.getPostCount() + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        database.getReference().child("usersPostedImages").child(auth.getUid())
+                                                .push().setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                     @Override
                                                     public void onSuccess(Void unused) {
+                                                        Log.d(tag, "User Photo Uploaded");
 
                                                     }
                                                 });
-                                                */
-                                     
+
+
+
 
 
                                     }

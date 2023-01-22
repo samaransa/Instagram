@@ -23,6 +23,7 @@ import com.blogspot.atifsoftwares.animatoolib.Animatoo;
 import com.example.instagram.Adapters.DiscoverAdapter;
 import com.example.instagram.Adapters.ViewPagerAdapterForProfile;
 import com.example.instagram.EditProfileActivity;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.Models.Users;
 import com.example.instagram.ProfileFragments.AddBottomSheetFragment;
 import com.example.instagram.ProfileFragments.BottomSheetFragment;
@@ -77,6 +78,7 @@ public class ProfileFragment extends Fragment {
         openGallery();
         gettingUserDataFromDatabase();
         forGettingFollowingCount();
+        forGettingPostCount();
 
 
         binding.editProfile.setOnClickListener(new View.OnClickListener() {
@@ -253,7 +255,7 @@ public class ProfileFragment extends Fragment {
         });
 
     }
-    // for getting followIngCount count;
+    // for getting followIngCount;
     public void forGettingFollowingCount(){
         database.getReference().child("Users").child(auth.getUid())
                 .child("followings").addValueEventListener(new ValueEventListener() {
@@ -271,6 +273,27 @@ public class ProfileFragment extends Fragment {
                     }
                 });
     }
-    
+
+    // for getting postsCount;
+    public void forGettingPostCount(){
+
+        database.getReference().child("usersPostedImages").child(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    binding.postCount.setText(snapshot.getChildrenCount()+"");
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
 
 }

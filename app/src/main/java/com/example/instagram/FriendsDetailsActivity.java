@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.instagram.Fragments.ProfileFragment;
 import com.example.instagram.Models.Followers;
 import com.example.instagram.Models.Users;
 import com.example.instagram.databinding.ActivityFreindsDetailsBinding;
@@ -159,5 +160,45 @@ public class FriendsDetailsActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    // for getting followIngCount;
+    public void forGettingFollowingCount(){
+        database.getReference().child("Users").child(auth.getUid())
+                .child("followings").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            binding.followingCount.setText(snapshot.getChildrenCount() + "");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+    }
+
+    // for getting postsCount;
+    public void forGettingPostCount(){
+
+        database.getReference().child("usersPostedImages").child(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            binding.postCount.setText(snapshot.getChildrenCount()+"");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
     }
 }
