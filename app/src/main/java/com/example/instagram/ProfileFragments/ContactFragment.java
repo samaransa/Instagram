@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.instagram.Adapters.ProfileFragmentPhotoUploadedAdapter;
 import com.example.instagram.EditProfileActivity;
-import com.example.instagram.Models.Discover;
-import com.example.instagram.Models.PostedData;
-import com.example.instagram.R;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.databinding.FragmentContactBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +28,7 @@ public class ContactFragment extends Fragment {
     FragmentContactBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
-    ArrayList<PostedData> postList = new ArrayList<>();
+    ArrayList<Posts> postList = new ArrayList<>();
     String tag = "contactFragment";
 
 
@@ -62,7 +60,7 @@ public class ContactFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 postList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    PostedData post = dataSnapshot.getValue(PostedData.class);
+                    Posts post = dataSnapshot.getValue(Posts.class);
                     post.setPostId(dataSnapshot.getKey());
                     if (post.getPostedBy().equals(FirebaseAuth.getInstance().getUid())){
                         postList.add(post);

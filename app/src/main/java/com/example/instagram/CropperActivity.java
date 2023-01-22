@@ -3,16 +3,13 @@ package com.example.instagram;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.instagram.Models.PostedData;
-import com.example.instagram.Models.Users;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.databinding.ActivityCropperBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -78,7 +75,7 @@ public class CropperActivity extends AppCompatActivity {
                         reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
-                                PostedData post = new PostedData();
+                                Posts post = new Posts();
                                 post.setPostImage(uri.toString());
                                 post.setPostedBy(FirebaseAuth.getInstance().getUid());
                                 post.setPostAt(new Date().getTime());

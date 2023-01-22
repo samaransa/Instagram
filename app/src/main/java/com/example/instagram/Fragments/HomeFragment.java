@@ -1,16 +1,10 @@
 package com.example.instagram.Fragments;
 
-import static android.content.ContentValues.TAG;
-import static com.example.instagram.R.drawable.dialog_bg;
-
 import android.Manifest;
-import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -22,15 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.instagram.Adapters.PostAdapter;
 import com.example.instagram.Adapters.StoryAdapter;
 import com.example.instagram.CropperActivity;
 import com.example.instagram.MessageActivity;
-import com.example.instagram.Models.Post;
-import com.example.instagram.Models.PostedData;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.Models.Stories;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
@@ -54,7 +46,7 @@ import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     ArrayList<Stories> list = new ArrayList<>();
-    ArrayList<PostedData> arrayList = new ArrayList<>();
+    ArrayList<Posts> arrayList = new ArrayList<>();
     FragmentHomeBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
@@ -144,7 +136,7 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 arrayList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    PostedData post = dataSnapshot.getValue(PostedData.class);
+                    Posts post = dataSnapshot.getValue(Posts.class);
                     post.setPostId(dataSnapshot.getKey());
                     arrayList.add(post);
                 }

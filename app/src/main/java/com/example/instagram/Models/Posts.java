@@ -1,6 +1,6 @@
 package com.example.instagram.Models;
 
-public class PostedData {
+public class Posts {
     private String postId, postImage, postedBy, postDescription;
     private long postAt;
     private int postLike;
@@ -8,7 +8,7 @@ public class PostedData {
     private String messageOne, messageTwo;
     private int postsCount;
 
-    public PostedData() {
+    public Posts() {
     }
 
     public String getPostId() {

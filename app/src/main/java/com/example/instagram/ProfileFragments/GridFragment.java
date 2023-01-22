@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 import com.example.instagram.Adapters.ProfileFragmentPhotoUploadedAdapter;
 import com.example.instagram.EditProfileActivity;
 import com.example.instagram.Models.Discover;
-import com.example.instagram.Models.PostedData;
-import com.example.instagram.R;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.databinding.FragmentGridBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +31,7 @@ public class GridFragment extends Fragment {
    ArrayList<Discover> list = new ArrayList<>();
    FirebaseDatabase database;
    FirebaseAuth auth;
-   ArrayList<PostedData> postlist = new ArrayList<>();
+   ArrayList<Posts> postlist = new ArrayList<>();
 
 
 
@@ -53,8 +52,6 @@ public class GridFragment extends Fragment {
     }
 
     public void uploadedPicture(){
-        list.add(new Discover(R.drawable.male));
-        list.add(new Discover(R.drawable.eight));
         binding.uploadedPhotoRV.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.uploadedPhotoRV.setNestedScrollingEnabled(false);
         ProfileFragmentPhotoUploadedAdapter adapter = new ProfileFragmentPhotoUploadedAdapter(getContext(), postlist);
@@ -64,7 +61,7 @@ public class GridFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 postlist.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    PostedData post = dataSnapshot.getValue(PostedData.class);
+                    Posts post = dataSnapshot.getValue(Posts.class);
                     post.setPostId(dataSnapshot.getKey());
                     if (post.getPostedBy().equals(FirebaseAuth.getInstance().getUid())){
                         postlist.add(post);

@@ -8,24 +8,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instagram.Fragments.ProfileFragment;
-import com.example.instagram.Models.Discover;
-import com.example.instagram.Models.PostedData;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.R;
 import com.example.instagram.databinding.ProfileUploadedPhotoSampleBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ProfileFragmentPhotoUploadedAdapter extends RecyclerView.Adapter<ProfileFragmentPhotoUploadedAdapter.ViewHolder> {
     Context context;
-    ArrayList<PostedData> list;
+    ArrayList<Posts> list;
     String tag = "profileFragmentPhotoUploadedAdapter";
 
 
-    public ProfileFragmentPhotoUploadedAdapter(Context context, ArrayList<PostedData> list) {
+    public ProfileFragmentPhotoUploadedAdapter(Context context, ArrayList<Posts> list) {
         this.context = context;
         this.list = list;
     }
@@ -39,7 +35,7 @@ public class ProfileFragmentPhotoUploadedAdapter extends RecyclerView.Adapter<Pr
 
     @Override
     public void onBindViewHolder(@NonNull ProfileFragmentPhotoUploadedAdapter.ViewHolder holder, int position) {
-        PostedData post = list.get(position);
+        Posts post = list.get(position);
         Picasso.get().load(post.getPostImage()).into(holder.binding.postedImage);
 
     }

@@ -6,14 +6,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagram.CommentActivity;
-import com.example.instagram.Models.Post;
-import com.example.instagram.Models.PostedData;
+import com.example.instagram.Models.Posts;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
 import com.example.instagram.databinding.PostedImageSampleBinding;
@@ -29,10 +27,10 @@ import java.util.ArrayList;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
     Context context;
-    ArrayList<PostedData> list = new ArrayList<>();
+    ArrayList<Posts> list = new ArrayList<>();
     String tag = "postAdapter";
 
-    public PostAdapter(Context context, ArrayList<PostedData> list) {
+    public PostAdapter(Context context, ArrayList<Posts> list) {
         this.context = context;
         this.list = list;
     }
@@ -47,7 +45,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PostAdapter.ViewHolder holder, int position) {
-        PostedData post = list.get(position);
+        Posts post = list.get(position);
         Picasso.get().load(post.getPostImage()).into(holder.binding.postImage);
         holder.binding.likeCount.setText(post.getPostLike() + "");
 
