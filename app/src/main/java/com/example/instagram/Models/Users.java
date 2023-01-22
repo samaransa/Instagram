@@ -8,7 +8,7 @@ public class Users {
     String profilePicture;
     String userId;
     private int followersCount;
-    private int followingCount;
+    private int followingCount = 1;
     private int postCount;
 
     public Users(String email, String password) {
@@ -18,6 +18,8 @@ public class Users {
 
     public Users() {
     }
+
+
 
     public String getEmail() {
         return email;

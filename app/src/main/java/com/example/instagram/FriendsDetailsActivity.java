@@ -12,7 +12,9 @@ import android.widget.Toast;
 import com.example.instagram.Models.Followers;
 import com.example.instagram.Models.Users;
 import com.example.instagram.databinding.ActivityFreindsDetailsBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,7 +43,7 @@ public class FriendsDetailsActivity extends AppCompatActivity {
         String profilePicture = getIntent().getStringExtra("profilePicture");
         userId = getIntent().getStringExtra("userId");
         int followersCount = getIntent().getIntExtra("followersCount", 0);
-        int followingCount = getIntent().getIntExtra("followingCount", 0);
+        int followingsCount = getIntent().getIntExtra("followingCount", 0);
 
         binding.name.setText(name);
         binding.userName.setText(userName);
@@ -52,6 +54,14 @@ public class FriendsDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        binding.moreFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(FriendsDetailsActivity.this, followingsCount + " ", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -102,6 +112,9 @@ public class FriendsDetailsActivity extends AppCompatActivity {
                                             public void onSuccess(Void unused) {
                                                 Toast.makeText(FriendsDetailsActivity.this, "You Followed " + name, Toast.LENGTH_SHORT).show();
                                                 Log.d(tag, "You Followed" + name);
+                                                binding.followBtn.setBackground(ContextCompat.getDrawable(FriendsDetailsActivity.this, R.drawable.follow_active_btn_bg));
+                                                binding.followBtn.setText("Following");
+                                                binding.followBtn.setTextColor(FriendsDetailsActivity.this.getResources().getColor(R.color.black));
                                                 database.getReference().child("Users")
                                                         .child(auth.getUid())
                                                         .child("followings")
@@ -110,18 +123,24 @@ public class FriendsDetailsActivity extends AppCompatActivity {
                                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                             @Override
                                                             public void onSuccess(Void unused) {
+
+                                                                /*
+
+                                                                This is not working
+
                                                                 database.getReference().child("Users")
                                                                         .child(auth.getUid())
                                                                         .child("followingCount")
-                                                                        .setValue(followingCount + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                        .setValue(1 + followingsCount )
+                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                             @Override
                                                                             public void onSuccess(Void unused) {
-                                                                                Log.d(tag, "following");
-                                                                                binding.followBtn.setBackground(ContextCompat.getDrawable(FriendsDetailsActivity.this, R.drawable.follow_active_btn_bg));
-                                                                                binding.followBtn.setText("Following");
-                                                                                binding.followBtn.setTextColor(FriendsDetailsActivity.this.getResources().getColor(R.color.black));
+
                                                                             }
                                                                         });
+
+
+                                                                 */
 
                                                             }
                                                         });

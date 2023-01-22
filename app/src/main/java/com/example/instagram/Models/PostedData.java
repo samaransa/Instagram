@@ -6,6 +6,7 @@ public class PostedData {
     private int postLike;
     private int commentCount;
     private String messageOne, messageTwo;
+    private int postsCount;
 
     public PostedData() {
     }
@@ -80,5 +81,13 @@ public class PostedData {
 
     public void setMessageTwo(String messageTwo) {
         this.messageTwo = messageTwo;
+    }
+
+    public int getPostsCount() {
+        return postsCount;
+    }
+
+    public void setPostsCount(int postsCount) {
+        this.postsCount = postsCount;
     }
 }

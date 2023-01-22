@@ -27,6 +27,7 @@ import com.example.instagram.Adapters.ViewPagerAdapterForProfile;
 import com.example.instagram.EditProfileActivity;
 import com.example.instagram.LoginActivity;
 import com.example.instagram.Models.Discover;
+import com.example.instagram.Models.PostedData;
 import com.example.instagram.Models.Users;
 import com.example.instagram.ProfileFragments.AddBottomSheetFragment;
 import com.example.instagram.ProfileFragments.BottomSheetFragment;
@@ -81,6 +82,7 @@ public class ProfileFragment extends Fragment {
         add();
         openGallery();
         gettingUserDataFromDatabase();
+        forGettingFollowingCount();
 
 
         binding.editProfile.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +170,6 @@ public class ProfileFragment extends Fragment {
                     binding.userName.setText(users.getUsername());
                     binding.name.setText(users.getName());
                     binding.followerCount.setText(users.getFollowersCount()+ "");
-                    binding.followingCount.setText(users.getFollowingCount() + "");
 
                 }
             }
@@ -258,10 +259,24 @@ public class ProfileFragment extends Fragment {
         });
 
     }
+    // for getting followIngCount count;
+    public void forGettingFollowingCount(){
+        database.getReference().child("Users").child(auth.getUid())
+                .child("followings").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            binding.followingCount.setText(snapshot.getChildrenCount() + "");
+                        }
 
+                    }
 
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-
-
+                    }
+                });
+    }
+    
 
 }

@@ -1,12 +1,7 @@
 package com.example.instagram.Fragments;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,20 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.instagram.Models.Message;
 import com.example.instagram.Models.Users;
-import com.example.instagram.NotificationFragment.FriendSuggestionNotificationModal;
 import com.example.instagram.NotificationFragment.SuggestionForYouAdapter;
-import com.example.instagram.R;
 import com.example.instagram.databinding.FragmentNotificationBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.yalantis.ucrop.model.CropParameters;
 
 import java.util.ArrayList;
 
