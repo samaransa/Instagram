@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.instagram.Fragments.ProfileFragment;
 import com.example.instagram.Models.Followers;
 import com.example.instagram.Models.Users;
+import com.example.instagram.Models.UsersStories;
 import com.example.instagram.databinding.ActivityFreindsDetailsBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,11 +46,13 @@ public class FriendsDetailsActivity extends AppCompatActivity {
         userId = getIntent().getStringExtra("userId");
         int followersCount = getIntent().getIntExtra("followersCount", 0);
         int followingsCount = getIntent().getIntExtra("followingCount", 0);
+        binding.name.setText(name);  // taking Name.
+        binding.userName.setText(userName); // taking username;
+        binding.bio.setText(bio); // taking bio
+        Picasso.get().load(profilePicture).into(binding.profileImage); // loading profile image.
 
-        binding.name.setText(name);
-        binding.userName.setText(userName);
-        binding.bio.setText(bio);
-        Picasso.get().load(profilePicture).into(binding.profileImage);
+        takingDataFromFireBaseData(); //  calling method .
+
 
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +61,7 @@ public class FriendsDetailsActivity extends AppCompatActivity {
             }
         });
 
-        binding.moreFriends.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(FriendsDetailsActivity.this, followingsCount + " ", Toast.LENGTH_SHORT).show();
 
-            }
-        });
 
 
         database.getReference().child("Users")
@@ -88,6 +85,9 @@ public class FriendsDetailsActivity extends AppCompatActivity {
 
                     }
                 });
+
+
+
 
 
         binding.followBtn.setOnClickListener(new View.OnClickListener() {
@@ -161,30 +161,11 @@ public class FriendsDetailsActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
     }
+    // taking data from firebase data like postCount , followerCount, and followingCount for users.
+    public void takingDataFromFireBaseData(){
 
-    // for getting followIngCount;
-    public void forGettingFollowingCount(){
-        database.getReference().child("Users").child(auth.getUid())
-                .child("followings").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        if (snapshot.exists()){
-                            binding.followingCount.setText(snapshot.getChildrenCount() + "");
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-    }
-
-    // for getting postsCount;
-    public void forGettingPostCount(){
-
-        database.getReference().child("usersPostedImages").child(FirebaseAuth.getInstance().getUid())
+        // for getting Post Count
+        database.getReference().child("usersPostedImages").child(userId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -199,6 +180,42 @@ public class FriendsDetailsActivity extends AppCompatActivity {
 
                     }
                 });
+
+        // for getting following Count.
+        database.getReference().child("Users").child(userId)
+                .child("followings").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            binding.followingCount.setText(snapshot.getChildrenCount() + "");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
+        // Getting Followers Count.
+        database.getReference().child("Users")
+                .child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            Users users = snapshot.getValue(Users.class);
+                            binding.followerCount.setText(users.getFollowersCount()+"");
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
     }
 }
