@@ -55,6 +55,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 Intent intent = new Intent(context, MessageDetailsActivity.class);
                 intent.putExtra("name", users.getName());
                 intent.putExtra("profilePicture", users.getProfilePicture());
+                intent.putExtra("userId", users.getUserId());
                 context.startActivity(intent);
             }
         });

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingRight="@dimen/_10mdp"
+    android:paddingBottom="@dimen/_2mdp"
+    android:paddingTop="@dimen/_1mdp"
+    android:layout_marginTop="@dimen/_2mdp"
+    android:background="@drawable/received_message_bg">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/_14mdp"/>
+
+    <TextView
+        android:id="@+id/receivedMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="You are so good bro."
+        android:textColor="@color/black"
+        android:inputType="textLongMessage|textMultiLine"
+        android:maxWidth="@dimen/_260mdp"
+        android:maxHeight="@dimen/_60mdp"
+        android:minWidth="@dimen/_30mdp"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        android:layout_marginStart="@dimen/_8mdp"
+        android:layout_marginTop="@dimen/_1mdp"/>
+    <TextView
+        android:id="@+id/receivedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="10:00 am"
+        android:textSize="@dimen/_7font_mdp"
+        app:layout_constraintTop_toBottomOf="@id/receivedMessage"
+        app:layout_constraintEnd_toEndOf="@id/receivedMessage"
+        />
+
+
+
+        
+
+</androidx.constraintlayout.widget.ConstraintLayout>

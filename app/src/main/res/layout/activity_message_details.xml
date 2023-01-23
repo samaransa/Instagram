@@ -35,19 +35,19 @@
             android:layout_marginStart="@dimen/_18mdp"
             app:layout_constraintStart_toEndOf="@id/back"/>
 
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10mdp"
+            android:layout_marginTop="8dp"
             android:text="Zehen Sameer"
             android:textColor="@color/black"
             android:textSize="@dimen/_11font_mdp"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/_8mdp"
             app:layout_constraintStart_toEndOf="@id/profileImage"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,6 +55,7 @@
             android:layout_marginTop="-2dp"
             android:text="Active 4h ago"
             android:textSize="@dimen/_9font_mdp"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="@id/profileImage"
             app:layout_constraintStart_toStartOf="@id/name"
             app:layout_constraintTop_toBottomOf="@id/name"
@@ -137,6 +138,8 @@
             android:inputType="textPersonName"
             android:padding="@dimen/_6mdp"
             android:maxLines="14"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="@dimen/_13font_mdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/cameraIcon"
