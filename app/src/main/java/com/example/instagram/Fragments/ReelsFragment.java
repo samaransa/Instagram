@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.instagram.Adapters.ViewPagerAdapterForProfile;
 import com.example.instagram.BottomSheets.EditProfileBottomSheetFragment;
@@ -44,8 +45,11 @@ public class ReelsFragment extends Fragment {
                 fragmentTransaction.replace(R.id.constraintLayoutFirstReels, fragment).addToBackStack(null);
                 fragmentTransaction.commit();
                 binding.button.setVisibility(View.INVISIBLE);
+                Toast.makeText(getContext(), "This fragment is not work in progress yet.", Toast.LENGTH_SHORT).show();
             }
         });
+
+
 
 
 

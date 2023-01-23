@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.instagram.ProfileFragments.BottomSheetFragment;
 import com.example.instagram.R;
 import com.example.instagram.databinding.FragmentSearchBinding;
@@ -29,6 +30,7 @@ public class SearchFragment extends Fragment {
     FragmentSearchBinding binding;
     FirebaseAuth auth;
     FirebaseDatabase database;
+    LottieAnimationView view;
     public SearchFragment() {
         // Required empty public constructor
     }
@@ -40,6 +42,7 @@ public class SearchFragment extends Fragment {
         // Inflate the layout for this fragment
         binding =  FragmentSearchBinding.inflate(inflater, container, false);
         String Tag = "First Log";
+        view = binding.animationView;
         binding.summit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,9 +51,18 @@ public class SearchFragment extends Fragment {
                 Log.d("Test", "Work in Progress");
                 Log.d(Tag, "My First Log Message ");
                 Log.e("error", "this is error");
+                // Java Method.
+                view.setAnimation(R.raw.dollar_coin);
+                view.playAnimation();
+                view.loop(true);
 
             }
         });
+
+
+
+
+
 
         return binding.getRoot();
     }

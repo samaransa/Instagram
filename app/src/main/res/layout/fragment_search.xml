@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.SearchFragment">
 
@@ -11,7 +12,7 @@
         android:id="@+id/summit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Summit"
+        android:text="Click"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="@dimen/_8font_mdp"
@@ -20,6 +21,19 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_100mdp"
         android:background="@drawable/btn_follow_bg"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="@dimen/_200mdp"
+        android:layout_height="@dimen/_200mdp"
+        android:layout_marginBottom="@dimen/_20mdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summit"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

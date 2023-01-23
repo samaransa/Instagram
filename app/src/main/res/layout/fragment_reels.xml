@@ -5,30 +5,30 @@
     android:layout_height="match_parent"
     android:id="@+id/constraintLayoutFirstReels"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".Fragments.ReelsFragment">
 
-   <EditText
-       android:id="@+id/ed"
-       android:layout_width="@dimen/_200mdp"
-       android:layout_height="wrap_content"
-      android:background="@drawable/edit_text_bg_for_message_detail_activity"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      android:layout_marginTop="@dimen/_50mdp"
-      android:hint="Type here."
-       android:inputType="textPersonName"
-      android:padding="@dimen/_11font_mdp"/>
+   <com.airbnb.lottie.LottieAnimationView
+       android:id="@+id/lottieAnimationView"
+       android:layout_width="@dimen/_100mdp"
+       android:layout_height="@dimen/_100mdp"
+       android:layout_marginBottom="16dp"
+       app:lottie_rawRes="@raw/star"
+       app:lottie_autoPlay="true"
+       app:lottie_loop="true"
+       app:layout_constraintBottom_toTopOf="@id/button"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent" />
 
 
    <Button
        android:id="@+id/button"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       app:layout_constraintStart_toStartOf="parent"
+       android:text="go to profile fragment"
+       app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintTop_toTopOf="parent"
-       android:text="hell"
-       app:layout_constraintBottom_toBottomOf="parent"/>
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
