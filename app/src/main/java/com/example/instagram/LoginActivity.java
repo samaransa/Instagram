@@ -4,11 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -28,6 +30,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.w3c.dom.Text;
 
@@ -36,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseUser user;
     boolean passwordVisible;
+    String token;
+    String tag = "LoginActivity";
+    FirebaseDatabase database;
 
 
 
@@ -47,7 +54,21 @@ public class LoginActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
         passwordToggle(); // calling passwordToggleMethod;
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()){
+                    token = task.getResult();
+                    Log.d(tag, "Token is generated Successfully : " + token);
+                }else {
+                    Log.d(tag, "Token is not generated.");
+
+                }
+
+            }
+        });
 
 
         binding.txtSignUp.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         binding.progressBar.setVisibility(View.INVISIBLE);
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        updateToken();
                         startActivity(intent);
 
                     }else {
@@ -150,5 +172,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
             startActivity(intent);
         }
+    }
+
+    public void updateToken(){
+        database.getReference().child("Users")
+                .child(auth.getUid())
+                .child("token").setValue(token);
     }
 }

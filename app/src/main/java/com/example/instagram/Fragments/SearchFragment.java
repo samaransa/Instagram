@@ -58,18 +58,7 @@ public class SearchFragment extends Fragment {
                 view.setAnimation(R.raw.dollar_coin);
                 view.playAnimation();
                 view.loop(true);
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<GetTokenResult> task) {
-                        if (task.isSuccessful()){
-                             token = task.getResult().getToken();
-                            Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
-                            Log.d(tag, "token: " + token);
-
-                        }
-                    }
-                });
+                Toast.makeText(getContext(), "Work in Progress.", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -80,8 +69,26 @@ public class SearchFragment extends Fragment {
 
 
 
+
         return binding.getRoot();
     }
+
+    private  void generateUserIdToken(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+            @Override
+            public void onComplete(@NonNull Task<GetTokenResult> task) {
+                if (task.isSuccessful()){
+                    token = task.getResult().getToken();
+                    Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "token: " + token);
+
+                }
+            }
+        });
+
+    }
+
 
 
 

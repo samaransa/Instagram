@@ -176,7 +176,10 @@ public class MessageDetailsActivity extends AppCompatActivity {
                                                     FcmNotificationsSender sender = new FcmNotificationsSender(token,
                                                             userName, modal.getMessage(), getApplicationContext(), MessageDetailsActivity.this);
                                                     sender.SendNotifications();
+                                                    Log.d(tag, "Notification send successfully.");
 
+                                                }else {
+                                                    Log.d(tag, "Token is empty.");
                                                 }
 
 

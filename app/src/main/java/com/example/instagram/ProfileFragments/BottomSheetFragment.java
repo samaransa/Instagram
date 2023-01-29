@@ -36,11 +36,15 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), LoginActivity.class);
+                deleteToken();
                 startActivity(intent);
                 auth.signOut();
             }
         });
 
         return binding.getRoot();
+    }
+    private void deleteToken(){
+        database.getReference().child("Users").child(auth.getUid()).child("token").setValue("");
     }
 }
