@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,7 +18,11 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.instagram.ProfileFragments.BottomSheetFragment;
 import com.example.instagram.R;
 import com.example.instagram.databinding.FragmentSearchBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.FirebaseDatabase;
 import com.yalantis.ucrop.UCrop;
 
@@ -31,10 +36,8 @@ public class SearchFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseDatabase database;
     LottieAnimationView view;
-    public SearchFragment() {
-        // Required empty public constructor
-    }
-
+    String tag = "SearchFragment";
+    String token;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,7 +50,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Work in progress", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Work in progress", Toast.LENGTH_SHORT).show();
                 Log.d("Test", "Work in Progress");
                 Log.d(Tag, "My First Log Message ");
                 Log.e("error", "this is error");
@@ -55,9 +58,22 @@ public class SearchFragment extends Fragment {
                 view.setAnimation(R.raw.dollar_coin);
                 view.playAnimation();
                 view.loop(true);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                user.getIdToken(true).addOnCompleteListener(new OnCompleteListener<GetTokenResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GetTokenResult> task) {
+                        if (task.isSuccessful()){
+                             token = task.getResult().getToken();
+                            Toast.makeText(getContext(), token, Toast.LENGTH_SHORT).show();
+                            Log.d(tag, "token: " + token);
+
+                        }
+                    }
+                });
 
             }
         });
+
 
 
 

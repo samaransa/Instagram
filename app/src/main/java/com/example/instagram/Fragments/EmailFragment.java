@@ -29,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.nio.file.attribute.UserDefinedFileAttributeView;
 
@@ -37,6 +38,8 @@ public class EmailFragment extends Fragment {
     FragmentEmailBinding binding;
     FirebaseDatabase database;
     FirebaseAuth auth;
+    String token;
+    String tag = "EmailFragment";
 
 
 
@@ -54,6 +57,15 @@ public class EmailFragment extends Fragment {
         binding = FragmentEmailBinding.inflate(inflater, container, false);
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(new OnCompleteListener<String>() {
+            @Override
+            public void onComplete(@NonNull Task<String> task) {
+                if (task.isSuccessful()){
+                    token = task.getResult();
+                }
+            }
+        });
 
 
 
@@ -119,7 +131,7 @@ public class EmailFragment extends Fragment {
                             }
                             if (task.isComplete()) {
                                 binding.progressBar.setVisibility(View.INVISIBLE);
-                                Users users = new Users(email, password);
+                                Users users = new Users(email, password, token);
                                 String id = task.getResult().getUser().getUid();
                                 database.getReference().child("Users").child(id).setValue(users);
                                 Toast.makeText(getContext(), "Account created successfully", Toast.LENGTH_SHORT).show();

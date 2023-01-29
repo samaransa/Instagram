@@ -8,12 +8,13 @@ public class Users {
     String profilePicture;
     String userId;
     private int followersCount;
-    private int followingCount = 1;
     private int postCount;
+    String token;
 
-    public Users(String email, String password) {
+    public Users(String email, String password, String token) {
         this.email = email;
         this.password = password;
+        this.token = token;
     }
 
     public Users() {
@@ -94,11 +95,12 @@ public class Users {
         this.postCount = postCount;
     }
 
-    public int getFollowingCount() {
-        return followingCount;
+
+    public String getToken() {
+        return token;
     }
 
-    public void setFollowingCount(int followingCount) {
-        this.followingCount = followingCount;
+    public void setToken(String token) {
+        this.token = token;
     }
 }

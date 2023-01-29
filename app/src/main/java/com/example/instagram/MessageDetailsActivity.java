@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.example.instagram.Adapters.ChattingAdapter;
 import com.example.instagram.Models.Chatting;
+import com.example.instagram.Models.Users;
+import com.example.instagram.Services.FcmNotificationsSender;
 import com.example.instagram.databinding.ActivityMessageDetailsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +39,7 @@ public class MessageDetailsActivity extends AppCompatActivity {
     String receiverId;
     ActivityMessageDetailsBinding binding;
     String tag = "MessageDetailsActivity";
+    String token , name, userName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,14 +47,31 @@ public class MessageDetailsActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
+
         senderId = auth.getUid();
         receiverId = getIntent().getStringExtra("userId");
-        String name = getIntent().getStringExtra("name");
+        name = getIntent().getStringExtra("name");
         String profilePicture = getIntent().getStringExtra("profilePicture");
+        token = getIntent().getStringExtra("token");
 
         binding.name.setText(name);
         Picasso.get().load(profilePicture).into(binding.profileImage);
         allMessagingTask();
+
+        database.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Users users = snapshot.getValue(Users.class);
+                    userName = users.getName();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
 
@@ -151,6 +171,14 @@ public class MessageDetailsActivity extends AppCompatActivity {
 
                                                 Log.d(tag, "Message Successfully gone");
                                                 binding.edTypeMessage.setText("");
+
+                                                if (!token.equals("")){
+                                                    FcmNotificationsSender sender = new FcmNotificationsSender(token,
+                                                            userName, modal.getMessage(), getApplicationContext(), MessageDetailsActivity.this);
+                                                    sender.SendNotifications();
+
+                                                }
+
 
 
                                             }

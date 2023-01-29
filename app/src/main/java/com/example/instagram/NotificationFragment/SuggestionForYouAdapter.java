@@ -55,14 +55,7 @@ public class SuggestionForYouAdapter extends RecyclerView.Adapter<SuggestionForY
         holder.binding.username.setText(users.getUsername());
         holder.binding.profileName.setText(users.getName());
 
-        int followingCount = users.getFollowingCount();
 
-        holder.binding.buttonFollow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, followingCount + "", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
         // working for follow button
@@ -175,7 +168,6 @@ public class SuggestionForYouAdapter extends RecyclerView.Adapter<SuggestionForY
                intent.putExtra("bio", users.getBio());
                intent.putExtra("profilePicture", users.getProfilePicture());
                intent.putExtra("followersCount", users.getFollowersCount());
-               intent.putExtra("followingCount", users.getFollowingCount());
                intent.putExtra("postCount", users.getPostCount());
                context.startActivity(intent);
 //               Animatoo.INSTANCE.animateFade(context);
