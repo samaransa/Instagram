@@ -54,6 +54,9 @@ public class SearchFragment extends Fragment {
                 Log.d("Test", "Work in Progress");
                 Log.d(Tag, "My First Log Message ");
                 Log.e("error", "this is error");
+                Log.d(tag , "There are some error here.");
+                Log.d(tag , "You have to fix this.");
+
                 // Java Method.
                 view.setAnimation(R.raw.dollar_coin);
                 view.playAnimation();

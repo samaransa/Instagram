@@ -201,7 +201,12 @@ public class HomeFragment extends Fragment {
     }
     // All work for post image;
     public void postWork(){
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        binding.recyclerView.setLayoutManager(layoutManager);
+        // For reverse The Recyclerview and show latest post on top.
+        layoutManager.setReverseLayout(true);
+        layoutManager.setStackFromEnd(true);
+
         binding.recyclerView.setNestedScrollingEnabled(false);
         PostAdapter adapter = new PostAdapter(getContext(), arrayList);
         binding.recyclerView.setAdapter(adapter);
