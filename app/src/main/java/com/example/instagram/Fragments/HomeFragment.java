@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.instagram.Adapters.PostAdapter;
 import com.example.instagram.Adapters.StoryAdapter;
 import com.example.instagram.CropperActivity;
+import com.example.instagram.LatestMessageActivity;
 import com.example.instagram.MessageActivity;
 import com.example.instagram.Models.Posts;
 import com.example.instagram.Models.Story;
@@ -236,7 +237,7 @@ public class HomeFragment extends Fragment {
         binding.message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), MessageActivity.class));
+                startActivity(new Intent(getContext(), LatestMessageActivity.class));
             }
         });
     }

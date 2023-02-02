@@ -1,23 +1,30 @@
 package com.example.instagram.Models;
 
 public class Chatting {
-    String uid , message, messageId;
+    String fromId , message, messageId;
     Long timestamp;
+    String toId;
 
-    public Chatting(String uid, String message) {
-        this.uid = uid;
+    public Chatting(String fromId, String message) {
+        this.fromId = fromId;
         this.message = message;
+    }
+
+    public Chatting(String fromId, String message, String toId) {
+        this.fromId = fromId;
+        this.message = message;
+        this.toId = toId;
     }
 
     public Chatting() {
     }
 
-    public String getUid() {
-        return uid;
+    public String getFromId() {
+        return fromId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setFromId(String fromId) {
+        this.fromId = fromId;
     }
 
     public String getMessage() {
@@ -42,5 +49,13 @@ public class Chatting {
 
     public void setTimestamp(Long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getToId() {
+        return toId;
+    }
+
+    public void setToId(String toId) {
+        this.toId = toId;
     }
 }

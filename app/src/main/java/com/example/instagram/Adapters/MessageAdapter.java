@@ -15,6 +15,11 @@ import com.example.instagram.Models.Message;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
 import com.example.instagram.databinding.MessagesSampleBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.net.UnknownServiceException;
@@ -48,6 +53,27 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 Toast.makeText(context, "Opening Camera.......", Toast.LENGTH_SHORT).show();
             }
         });
+
+        FirebaseDatabase.getInstance().getReference()
+                .child("chats")
+                .child(FirebaseAuth.getInstance().getUid() + users.getUserId())
+                .orderByChild("timestamp")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()){
+                                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                                holder.binding.lastMessage.setText(dataSnapshot.child("message").getValue().toString());
+                                            }
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

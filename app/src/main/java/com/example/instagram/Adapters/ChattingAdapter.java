@@ -45,7 +45,7 @@ public class ChattingAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-        if (list.get(position).getUid().equals(FirebaseAuth.getInstance().getUid())){
+        if (list.get(position).getFromId().equals(FirebaseAuth.getInstance().getUid())){
             return SENDER_VIEW_TYPE;
         }else {
             return RECEIVER_VIEW_TYPE;

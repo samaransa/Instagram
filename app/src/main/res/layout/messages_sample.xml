@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingBottom="@dimen/_8mdp"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -18,7 +19,7 @@
         android:id="@+id/profileLName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monika Singh"
+        android:text="User Name"
         android:textColor="@color/black"
         android:textSize="@dimen/_11font_mdp"
         android:textStyle="bold"
@@ -26,16 +27,18 @@
         android:layout_marginTop="@dimen/_15mdp"
         app:layout_constraintStart_toEndOf="@id/profileImage"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
-        android:id="@+id/status"
+        android:id="@+id/lastMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="-16dp"
         android:text="Active Now"
         android:textColor="@color/black"
-        android:layout_marginTop="-16dp"
-        app:layout_constraintTop_toBottomOf="@id/profileLName"
+        app:layout_constraintBottom_toBottomOf="@id/profileImage"
         app:layout_constraintStart_toStartOf="@id/profileLName"
-        app:layout_constraintBottom_toBottomOf="@id/profileImage"/>
+        app:layout_constraintTop_toBottomOf="@id/profileLName"
+        app:layout_constraintVertical_bias="0.484" />
 
     <ImageView
         android:id="@+id/camera"

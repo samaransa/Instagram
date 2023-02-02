@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 public class MessageActivity extends AppCompatActivity {
     ActivityMessageBinding binding;
-    ArrayList<Online> list = new ArrayList<>();
     ArrayList<Users> arrayList = new ArrayList<>();
     FirebaseDatabase database;
     FirebaseAuth auth;
@@ -34,36 +33,22 @@ public class MessageActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
-        whoIsOnlineAdapter();
+
         messagesAdapter();
+        intentMethod();
     }
 
-    public void whoIsOnlineAdapter(){
-
-        binding.back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        list.add(new Online("baby_naz", R.drawable.brunetee ));
-        list.add(new Online("range_rox", R.drawable.chris ));
-//        list.add(new Online("son_pari", R.drawable.modelgirl ));
-        binding.activatedFriendsRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        binding.activatedFriendsRecyclerView.setNestedScrollingEnabled(false);
-        binding.horizontalSv.setHorizontalScrollBarEnabled(false);
-        binding.activatedFriendsRecyclerView.setAdapter(new OnlineAdapter(this, list));
-
-    }
 
     public void messagesAdapter(){
 
 
-
-        binding.messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.messageRecyclerView.setNestedScrollingEnabled(false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.recyclerView.setLayoutManager(layoutManager);
+        layoutManager.setStackFromEnd(true);
+//        binding.messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.recyclerView.setNestedScrollingEnabled(false);
         MessageAdapter adapter = new MessageAdapter(this, arrayList);
-        binding.messageRecyclerView.setAdapter(adapter);
+        binding.recyclerView.setAdapter(adapter);
 
         database.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
@@ -88,6 +73,18 @@ public class MessageActivity extends AppCompatActivity {
         });
 
 
+
+
+    }
+
+
+    public void intentMethod(){
+        binding.back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
 

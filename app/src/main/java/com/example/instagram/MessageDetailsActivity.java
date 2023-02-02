@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -144,7 +145,10 @@ public class MessageDetailsActivity extends AppCompatActivity {
 
     public void allMessagingTask(){
         final ArrayList<Chatting> messageModals = new ArrayList<>();
-        binding.messagesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        layoutManager.setSmoothScrollbarEnabled(true);
+        binding.messagesRecyclerView.setLayoutManager(layoutManager);
+
         final ChattingAdapter chattingAdapter = new ChattingAdapter(messageModals, this);
         binding.messagesRecyclerView.setAdapter(chattingAdapter);
         final  String senderRoom = senderId+receiverId;
@@ -182,6 +186,28 @@ public class MessageDetailsActivity extends AppCompatActivity {
                                                     Log.d(tag, "Token is empty.");
                                                 }
 
+                                                Chatting chattingClass = new Chatting(senderId, message, receiverId);
+                                                chattingClass.setTimestamp(modal.getTimestamp());
+
+
+
+                                                database.getReference().child("latest-message")
+                                                        .child(senderId).child(receiverId)
+                                                        .setValue(chattingClass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                            @Override
+                                                            public void onSuccess(Void unused) {
+                                                                database.getReference().child("latest-message")
+                                                                        .child(receiverId).child(senderId)
+                                                                        .setValue(chattingClass).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                            @Override
+                                                                            public void onSuccess(Void unused) {
+
+                                                                            }
+                                                                        });
+
+                                                            }
+                                                        });
+
 
 
                                             }
@@ -197,7 +223,7 @@ public class MessageDetailsActivity extends AppCompatActivity {
                 .child(senderRoom).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        messageModals.clear();;
+                        messageModals.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                             Chatting modal = dataSnapshot.getValue(Chatting.class);
                             modal.setMessageId(dataSnapshot.getKey());

@@ -7,7 +7,8 @@
     android:paddingBottom="@dimen/_2mdp"
     android:paddingTop="@dimen/_1mdp"
     android:layout_marginTop="@dimen/_2mdp"
-    android:background="@drawable/received_message_bg">
+    android:layout_marginStart="@dimen/_3mdp"
+    android:background="@drawable/receave_message_sample">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
