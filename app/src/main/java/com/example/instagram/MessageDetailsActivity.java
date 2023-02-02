@@ -19,18 +19,22 @@ import android.widget.Toast;
 
 import com.example.instagram.Adapters.ChattingAdapter;
 import com.example.instagram.Models.Chatting;
+import com.example.instagram.Models.Online;
 import com.example.instagram.Models.Users;
 import com.example.instagram.Services.FcmNotificationsSender;
 import com.example.instagram.databinding.ActivityMessageDetailsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class MessageDetailsActivity extends AppCompatActivity {
@@ -41,12 +45,14 @@ public class MessageDetailsActivity extends AppCompatActivity {
     ActivityMessageDetailsBinding binding;
     String tag = "MessageDetailsActivity";
     String token , name, userName;
+    FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMessageDetailsBinding.inflate(getLayoutInflater());
         auth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
+        currentUser = auth.getCurrentUser();
 
 
         senderId = auth.getUid();
@@ -92,12 +98,14 @@ public class MessageDetailsActivity extends AppCompatActivity {
                     binding.sticker.setVisibility(View.INVISIBLE);
                     binding.edTypeMessage.setMaxWidth(300);
                     binding.inIcon.setImageResource(R.drawable.search_three);
+                    updateTypingStatus("typing...");
                 }else {
                     binding.sendBtn.setVisibility(View.INVISIBLE);
                     binding.microPhone.setVisibility(View.VISIBLE);
                     binding.openGalley.setVisibility(View.VISIBLE);
                     binding.sticker.setVisibility(View.VISIBLE);
                     binding.inIcon.setImageResource(R.drawable.camera_full);
+                    updateTypingStatus("");
                 }
 
             }
@@ -146,7 +154,6 @@ public class MessageDetailsActivity extends AppCompatActivity {
     public void allMessagingTask(){
         final ArrayList<Chatting> messageModals = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        layoutManager.setSmoothScrollbarEnabled(true);
         binding.messagesRecyclerView.setLayoutManager(layoutManager);
 
         final ChattingAdapter chattingAdapter = new ChattingAdapter(messageModals, this);
@@ -231,6 +238,10 @@ public class MessageDetailsActivity extends AppCompatActivity {
                         }
                         chattingAdapter.notifyDataSetChanged();
 
+                        binding.messagesRecyclerView.smoothScrollToPosition(binding.messagesRecyclerView.getAdapter().getItemCount()); // it will automatically scroll to the view position.
+
+
+
                     }
 
                     @Override
@@ -240,5 +251,102 @@ public class MessageDetailsActivity extends AppCompatActivity {
                 });
 
     }
+
+    private void  updateTypingStatus(String value){
+        Online online = new Online();
+        online.setTypingStatus(value);
+        database.getReference().child("Users").child(auth.getUid())
+                .child("userState").child("typingStatus").setValue(online).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                    }
+                });
+
+
+        database.getReference().child("Users").child(receiverId).child("userState")
+                .child("typingStatus").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+                            Online online1 = snapshot.getValue(Online.class);
+                            binding.typeStatus.setText(online1.getTypingStatus());
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (currentUser !=null){
+            updateUserStatus(auth.getUid(), "online");
+        }else {
+            updateUserStatus("", "offline");
+
+
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (currentUser !=null){
+            updateUserStatus("", "offline");
+
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (currentUser !=null){
+            updateUserStatus("", "offline");
+
+        }
+    }
+
+    private void updateUserStatus(String userId, String state){
+        String saveCurrentTime, saveCurrentDate;
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate = currentDate.format(calendar.getTime());
+        SimpleDateFormat currentTime= new SimpleDateFormat("hh:mm a");
+        saveCurrentTime = currentTime.format(calendar.getTime());
+
+
+        Users users = new Users();
+        users.setUserId(userId);
+        users.setState(state);
+        users.setDate(saveCurrentDate);
+        users.setTime(saveCurrentTime);
+
+
+
+        database.getReference().child("Users").child(auth.getUid()).child("userState").setValue(users)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+
+
+                    }
+                });
+
+
+    }
+
+
 
 }

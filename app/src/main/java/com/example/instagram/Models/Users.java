@@ -7,9 +7,12 @@ public class Users {
     String username;
     String profilePicture;
     String userId;
-    private int followersCount;
-    private int postCount;
+
     String token;
+
+    // UserState
+    String date, state, time, typingStatus;
+
 
     public Users(String email, String password, String token) {
         this.email = email;
@@ -20,7 +23,15 @@ public class Users {
     public Users() {
     }
 
+    private int followersCount;
+    private int postCount;
 
+    public Users(String userId, String date, String state, String time) {
+        this.userId = userId;
+        this.date = date;
+        this.state = state;
+        this.time = time;
+    }
 
     public String getEmail() {
         return email;
@@ -102,5 +113,37 @@ public class Users {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getTypingStatus() {
+        return typingStatus;
+    }
+
+    public void setTypingStatus(String typingStatus) {
+        this.typingStatus = typingStatus;
     }
 }

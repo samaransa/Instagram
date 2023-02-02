@@ -9,8 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.instagram.Models.Online;
+import com.example.instagram.Models.Users;
 import com.example.instagram.R;
 import com.example.instagram.databinding.OnlineFriendsSampleBinding;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -33,8 +36,10 @@ public class OnlineAdapter extends RecyclerView.Adapter<OnlineAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull OnlineAdapter.ViewHolder holder, int position) {
-        holder.binding.profileImage.setImageResource(list.get(position).getProfileImage());
-        holder.binding.profileName.setText(list.get(position).getName());
+        Online online = list.get(position);
+        Picasso.get().load(online.getProfilePicture()).into(holder.binding.profileImage);
+        holder.binding.profileName.setText(online.getUsername());
+
 
     }
 

@@ -64,6 +64,9 @@ public class HomeFragment extends Fragment {
     ActivityResultLauncher<String> galleryLauncher;
     Uri source;
 
+   String name, userId, profilePicture, username;
+
+
 
 
     public HomeFragment() {
@@ -83,8 +86,9 @@ public class HomeFragment extends Fragment {
 
         storyWork();  // calling method
         postWork();
-        intentGoForNextClass();
         fetchingDataFromFirebase();
+        intentGoForNextClass();
+
 
         cropImage = registerForActivityResult(new ActivityResultContracts.GetContent(), result -> {
             Intent intent = new Intent(getContext(), CropperActivity.class);
@@ -108,12 +112,6 @@ public class HomeFragment extends Fragment {
 
 
         });
-
-
-
-
-
-
 
 
         binding.addPostBtn.setOnClickListener(new View.OnClickListener() {
@@ -238,6 +236,12 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), LatestMessageActivity.class));
+                Intent intent = new Intent(getContext(), LatestMessageActivity.class);
+                intent.putExtra("profilePicture", profilePicture);
+                intent.putExtra("userId", userId);
+                intent.putExtra("name", name);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
     }
@@ -249,6 +253,10 @@ public class HomeFragment extends Fragment {
                 if (snapshot.exists()) {
                     Users users = snapshot.getValue(Users.class);
                     Picasso.get().load(users.getProfilePicture()).into(binding.profileImage);
+                    profilePicture = users.getProfilePicture();
+                    name = users.getName();
+                    userId = users.getUserId();
+                    username = users.getUsername();
 
                 }
             }
