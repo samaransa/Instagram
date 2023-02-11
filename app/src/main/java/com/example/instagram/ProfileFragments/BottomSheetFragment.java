@@ -3,14 +3,11 @@ package com.example.instagram.ProfileFragments;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.instagram.LoginActivity;
-import com.example.instagram.R;
+import com.example.instagram.Activities.LoginActivity;
 import com.example.instagram.databinding.FragmentBottomSheetBinding;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,6 +36,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
                 deleteToken();
                 startActivity(intent);
                 auth.signOut();
+                getActivity().finish();
             }
         });
 
@@ -47,4 +45,6 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
     private void deleteToken(){
         database.getReference().child("Users").child(auth.getUid()).child("token").setValue("");
     }
+
+
 }

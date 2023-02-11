@@ -22,28 +22,28 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LatestMessageActivity"
+            android:name=".Activities.LatestMessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CommentActivity"
+            android:name=".Activities.CommentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CropperActivity"
+            android:name=".Activities.CropperActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MessageDetailsActivity"
+            android:name=".Activities.MessageDetailsActivity"
             android:exported="true">
 
             <!-- login activity -->
@@ -53,42 +53,42 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FriendsDetailsActivity"
+            android:name=".Activities.FriendsDetailsActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MessageActivity"
+            android:name=".Activities.MessageActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".Activities.EditProfileActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name=".Activities.SplashActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateAccountActivity"
+            android:name=".Activities.CreateAccountActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -101,14 +101,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignUp"
+            android:name=".Activities.SignUp"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SignActivity"
+            android:name=".Activities.SignActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

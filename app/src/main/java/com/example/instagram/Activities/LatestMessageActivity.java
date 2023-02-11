@@ -1,9 +1,10 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,10 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,24 +36,18 @@ import java.util.Map;
 public class LatestMessageActivity extends AppCompatActivity {
     ActivityLatestMessageBinding binding;
     ArrayList<Online> onlineStatusList = new ArrayList<>();
-    ArrayList<Chatting>  latestMsgList = new ArrayList<>();
+    ArrayList<Chatting> latestMsgList = new ArrayList<>();
     FirebaseDatabase database;
     FirebaseAuth auth;
     LatestMessageAdapter adapter;
     Map<String, Chatting> map = new HashMap<>();
     FirebaseUser currentUser;
     String currentUserId;
-    String  name , profilePicture, userId, username;
+    String name, profilePicture, userId, username;
 
     String tag = "LatestMessageActivity";
-
-
-
-
-
-
-
-
+    Chatting chatting;
+    Map<String , Chatting> latestMap = new HashMap<>();
 
 
     @Override
@@ -74,15 +67,16 @@ public class LatestMessageActivity extends AppCompatActivity {
         userId = getIntent().getStringExtra("userId");
 
 
-
-        childAdd();
+        chileEvenList();
 //        listenForLatestMessage();
         intentMethod();
         onlineStatusWork();
+        fetchingDataFromFirebase();
 //
 
     }
-    private void intentMethod(){
+
+    private void intentMethod() {
         binding.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,25 +88,16 @@ public class LatestMessageActivity extends AppCompatActivity {
         binding.back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    onBackPressed();
-                    Toast.makeText(LatestMessageActivity.this, "Click Again", Toast.LENGTH_SHORT).show();
-                    Log.d(tag, "on beck press");
-
-                }catch (Exception e){
-                    Log.d(tag,  "some problem find " + e);
-                }
-
+               onBackPressed();
             }
 
         });
     }
 
-
     public void listenForLatestMessage() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         binding.messageRv.setLayoutManager(layoutManager);
-         adapter = new LatestMessageAdapter(this, latestMsgList);
+        adapter = new LatestMessageAdapter(this, latestMsgList);
         binding.messageRv.setNestedScrollingEnabled(false);
         binding.messageRv.setAdapter(adapter);
 
@@ -138,62 +123,7 @@ public class LatestMessageActivity extends AppCompatActivity {
         });
     }
 
-    public  void  childAdd(){
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        HashMap<String, Chatting> hashMap = new HashMap<>();
-        binding.messageRv.setLayoutManager(layoutManager);
-        adapter = new LatestMessageAdapter(this, latestMsgList);
-        binding.messageRv.setNestedScrollingEnabled(false);
-        binding.messageRv.setAdapter(adapter);
-        database.getReference().child("latest-message").child(auth.getUid()).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                Chatting chatting = snapshot.getValue(Chatting.class);
-                chatting.setFromId(snapshot.getKey());
-                latestMsgList.add(0, chatting);
-                map.put(snapshot.getKey(), chatting);
-                refresh();
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                Chatting chatting = snapshot.getValue(Chatting.class);
-                chatting.setFromId(snapshot.getKey());
-                latestMsgList.add(0, chatting);
-                map.put(snapshot.getKey(), chatting);
-                refresh();
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }
-
-    public void refresh(){
-       latestMsgList.clear();
-        for (Chatting chatting : map.values()){
-            latestMsgList.add(chatting);
-        }
-        adapter.notifyDataSetChanged();
-    }
-
-    private void onlineStatusWork(){
+    private void onlineStatusWork() {
         LinearLayoutManager layoutManage = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         binding.onlineStatusRv.setLayoutManager(layoutManage);
         binding.onlineStatusRv.setNestedScrollingEnabled(false);
@@ -204,10 +134,10 @@ public class LatestMessageActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 onlineStatusList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Online online = dataSnapshot.getValue(Online.class);
                     online.setUserId(dataSnapshot.getKey());
-                    if (!dataSnapshot.getKey().equals(auth.getUid())){
+                    if (!dataSnapshot.getKey().equals(auth.getUid())) {
                         onlineStatusList.add(online);
 
                     }
@@ -223,17 +153,32 @@ public class LatestMessageActivity extends AppCompatActivity {
 
     }
 
+    private void fetchingDataFromFirebase() {
+        database.getReference().child("Users").child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Users users = snapshot.getValue(Users.class);
+                    binding.userName.setText(users.getUsername());
+                }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        if (currentUser !=null){
+        if (currentUser != null) {
             updateUserStatus(currentUserId, "online");
             onlineState(username, profilePicture);
-        }else {
+        } else {
             updateUserStatus("", "offline");
             onlineState(null, null);
 
@@ -243,7 +188,7 @@ public class LatestMessageActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        if (currentUser !=null){
+        if (currentUser != null) {
             updateUserStatus("", "offline");
             onlineState(null, null);
         }
@@ -252,18 +197,18 @@ public class LatestMessageActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (currentUser !=null){
+        if (currentUser != null) {
             updateUserStatus("", "offline");
             onlineState(null, null);
         }
     }
 
-    private void updateUserStatus(String userId, String state){
+    private void updateUserStatus(String userId, String state) {
         String saveCurrentTime, saveCurrentDate;
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
         saveCurrentDate = currentDate.format(calendar.getTime());
-        SimpleDateFormat currentTime= new SimpleDateFormat("hh:mm a");
+        SimpleDateFormat currentTime = new SimpleDateFormat("hh:mm a");
         saveCurrentTime = currentTime.format(calendar.getTime());
 
 
@@ -294,7 +239,6 @@ public class LatestMessageActivity extends AppCompatActivity {
                     public void onSuccess(Void unused) {
 
 
-
                     }
                 });
 
@@ -302,7 +246,7 @@ public class LatestMessageActivity extends AppCompatActivity {
     }
 
 
-    private void onlineState(String username , String profilePicture){
+    private void onlineState(String username, String profilePicture) {
 
 
         Online online = new Online();
@@ -321,7 +265,84 @@ public class LatestMessageActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    public void chileEvenList() {
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.messageRv.setLayoutManager(layoutManager);
+        adapter = new LatestMessageAdapter(this, latestMsgList);
+        binding.messageRv.setNestedScrollingEnabled(false);
+        binding.messageRv.setAdapter(adapter);
+        database.getReference().child("latest-message").child(auth.getUid()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Chatting chatting = snapshot.getValue(Chatting.class);
+                chatting.setFromId(snapshot.getKey());
+                latestMsgList.add(0 , chatting);
+                map.put(snapshot.getKey(), chatting);
+                refreshRecyclerView();
 
+
+
+
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                latestMsgList.clear();
+                chatting = snapshot.getValue(Chatting.class);
+                chatting.setFromId(snapshot.getKey());
+                latestMsgList.add(0 , chatting);
+                map.put(chatting.getFromId(), chatting);
+                refreshRecyclerView();
+
+
+
+
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    private void refreshRecyclerView(){
+        latestMsgList.clear();
+        for (Chatting chatting1 : map.values()){
+            latestMsgList.add(0 , chatting1);
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+
+
+    private void refresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                latestMsgList.clear();
+              for (Chatting chatting1 : map.values()){
+                  latestMsgList.add(chatting1);
+                  adapter.notifyDataSetChanged();
+              }
+
+              binding.swipeRefreshLayout.setRefreshing(false);
+
+            }
+        });
+    }
 
 
 

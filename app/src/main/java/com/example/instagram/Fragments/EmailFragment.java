@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -134,9 +135,10 @@ public class EmailFragment extends Fragment {
                                 Users users = new Users(email, password, token);
                                 String id = task.getResult().getUser().getUid();
                                 database.getReference().child("Users").child(id).setValue(users);
-                                Toast.makeText(getContext(), "Account created successfully", Toast.LENGTH_SHORT).show();
+                                Log.d(tag, "Account created successfully");
                                 Intent intent = new Intent(getContext(), MainActivity.class);
                                 startActivity(intent);
+                                getActivity().finish();
 //                                binding.edEmail.setText("");
 //                                binding.edPassword.setText("");
 

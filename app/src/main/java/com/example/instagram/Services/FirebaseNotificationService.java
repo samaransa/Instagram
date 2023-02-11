@@ -15,7 +15,7 @@ import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.instagram.MessageDetailsActivity;
+import com.example.instagram.Activities.MessageDetailsActivity;
 import com.example.instagram.Models.AllConstants;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;

@@ -1,27 +1,24 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
-import android.text.Layout;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.EdgeEffect;
 import android.widget.Toast;
 
 import com.example.instagram.Adapters.ChattingAdapter;
 import com.example.instagram.Models.Chatting;
 import com.example.instagram.Models.Online;
 import com.example.instagram.Models.Users;
+import com.example.instagram.R;
 import com.example.instagram.Services.FcmNotificationsSender;
+import com.example.instagram.databinding.ActivityFreindsDetailsBinding;
 import com.example.instagram.databinding.ActivityMessageDetailsBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;

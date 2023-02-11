@@ -2,7 +2,6 @@ package com.example.instagram.NotificationFragment;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blogspot.atifsoftwares.animatoolib.Animatoo;
-import com.example.instagram.FriendsDetailsActivity;
-import com.example.instagram.Models.Followers;
+import com.example.instagram.Activities.FriendsDetailsActivity;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
-import com.example.instagram.SplashActivity;
 import com.example.instagram.databinding.FriendRequestSampleBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 public class SuggestionForYouAdapter extends RecyclerView.Adapter<SuggestionForYouAdapter.ViewHolder> {
     Context context;

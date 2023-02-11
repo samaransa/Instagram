@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

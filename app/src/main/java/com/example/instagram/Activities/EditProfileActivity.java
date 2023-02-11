@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
@@ -22,6 +22,7 @@ import com.example.instagram.Fragments.HomeFragment;
 import com.example.instagram.Fragments.ProfileFragment;
 import com.example.instagram.Models.Users;
 import com.example.instagram.ProfileFragments.BottomSheetFragment;
+import com.example.instagram.R;
 import com.example.instagram.databinding.ActivityEditProfileBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;

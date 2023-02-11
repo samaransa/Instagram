@@ -1,4 +1,4 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,34 +8,35 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.example.instagram.databinding.ActivitySignBinding;
-import com.example.instagram.databinding.ActivitySignUpBinding;
 
-public class SignUp extends AppCompatActivity {
-    ActivitySignUpBinding binding;
+public class SignActivity extends AppCompatActivity {
+
+    ActivitySignBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivitySignUpBinding.inflate(getLayoutInflater());
+        binding = ActivitySignBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 //        getSupportActionBar().hide();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+        binding.signUpt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUp.this, LoginActivity.class);
+                Intent intent = new Intent(SignActivity.this, SignUp.class);
                 startActivity(intent);
             }
         });
 
-        binding.btnCreateAccount.setOnClickListener(new View.OnClickListener() {
+        binding.switchAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(SignUp.this, CreateAccountActivity.class);
+                Intent i = new Intent(SignActivity.this, LoginActivity.class);
                 startActivity(i);
             }
         });
+
+        Intent intent = getIntent();
     }
 }

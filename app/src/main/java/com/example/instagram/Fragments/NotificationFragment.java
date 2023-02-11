@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,7 @@ public class NotificationFragment extends Fragment {
     ArrayList<Users> list = new ArrayList<>();
     FirebaseAuth auth;
     FirebaseDatabase database;
+    SuggestionForYouAdapter adapter;
 
     public NotificationFragment() {
         // Required empty public constructor
@@ -49,7 +51,7 @@ public class NotificationFragment extends Fragment {
 
         binding.friendsSuggestionRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.friendsSuggestionRecyclerView.setNestedScrollingEnabled(false);
-        SuggestionForYouAdapter adapter = new SuggestionForYouAdapter(getContext(), list);
+        adapter = new SuggestionForYouAdapter(getContext(), list);
         binding.friendsSuggestionRecyclerView.setAdapter(adapter);
 //        setUserVisibleHint(true) ;
 
@@ -67,6 +69,7 @@ public class NotificationFragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
+//                swipeRefreshLayout(); // for the refreshing the layout manually.
 
 
             }
@@ -74,6 +77,17 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+            }
+        });
+    }
+
+
+    private  void  swipeRefreshLayout(){
+        binding.swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                adapter.notifyDataSetChanged();
+                binding.swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

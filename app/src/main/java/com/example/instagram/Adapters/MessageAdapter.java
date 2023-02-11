@@ -10,8 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instagram.MessageDetailsActivity;
-import com.example.instagram.Models.Message;
+import com.example.instagram.Activities.MessageDetailsActivity;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
 import com.example.instagram.databinding.MessagesSampleBinding;
@@ -22,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.net.UnknownServiceException;
 import java.util.ArrayList;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
@@ -83,6 +81,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
                 intent.putExtra("profilePicture", users.getProfilePicture());
                 intent.putExtra("userId", users.getUserId());
                 intent.putExtra("token", users.getToken());
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
             }
         });

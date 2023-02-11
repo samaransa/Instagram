@@ -1,27 +1,23 @@
-package com.example.instagram;
+package com.example.instagram.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.instagram.MainActivity;
+import com.example.instagram.R;
 import com.example.instagram.databinding.ActivityLoginBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -32,8 +28,6 @@ import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
-
-import org.w3c.dom.Text;
 
 public class LoginActivity extends AppCompatActivity {
     ActivityLoginBinding binding;
@@ -113,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         updateToken();
                         startActivity(intent);
+                        finish();
 
                     }else {
                         binding.progressBar.setVisibility(View.INVISIBLE);
@@ -171,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user!=null){
             Intent intent = new Intent(LoginActivity.this, SplashActivity.class);
             startActivity(intent);
+            finish();   // i add this for exits from the app
         }
     }
 

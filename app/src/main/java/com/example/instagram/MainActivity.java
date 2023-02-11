@@ -8,7 +8,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
+import com.example.instagram.Activities.LoginActivity;
+import com.example.instagram.Activities.SignActivity;
 import com.example.instagram.Fragments.HomeFragment;
 import com.example.instagram.Fragments.NotificationFragment;
 import com.example.instagram.Fragments.ProfileFragment;
@@ -93,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

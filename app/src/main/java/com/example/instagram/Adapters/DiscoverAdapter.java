@@ -9,8 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.instagram.FriendsDetailsActivity;
-import com.example.instagram.Models.Discover;
+import com.example.instagram.Activities.FriendsDetailsActivity;
 import com.example.instagram.Models.Users;
 import com.example.instagram.R;
 import com.example.instagram.databinding.DiscoverPeopleSampleBinding;
@@ -49,6 +48,7 @@ public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.ViewHo
                 intent.putExtra("bio", users.getBio());
                 intent.putExtra("profilePicture", users.getProfilePicture());
                 intent.putExtra("followersCount", users.getFollowersCount());
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 context.startActivity(intent);
             }
         });

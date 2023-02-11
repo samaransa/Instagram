@@ -21,14 +21,12 @@ import android.widget.Toast;
 
 import com.example.instagram.Adapters.PostAdapter;
 import com.example.instagram.Adapters.StoryAdapter;
-import com.example.instagram.CropperActivity;
-import com.example.instagram.LatestMessageActivity;
-import com.example.instagram.MessageActivity;
+import com.example.instagram.Activities.CropperActivity;
+import com.example.instagram.Activities.LatestMessageActivity;
 import com.example.instagram.Models.Posts;
 import com.example.instagram.Models.Story;
 import com.example.instagram.Models.Users;
 import com.example.instagram.Models.UsersStories;
-import com.example.instagram.R;
 import com.example.instagram.databinding.FragmentHomeBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -241,6 +239,7 @@ public class HomeFragment extends Fragment {
                 intent.putExtra("userId", userId);
                 intent.putExtra("name", name);
                 intent.putExtra("username", username);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });

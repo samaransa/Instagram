@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagram.Adapters.ProfileFragmentPhotoUploadedAdapter;
-import com.example.instagram.EditProfileActivity;
+import com.example.instagram.Activities.EditProfileActivity;
 import com.example.instagram.Models.Discover;
 import com.example.instagram.Models.Posts;
 import com.example.instagram.databinding.FragmentGridBinding;
