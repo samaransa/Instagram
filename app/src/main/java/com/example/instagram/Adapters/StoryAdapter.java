@@ -48,7 +48,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder> 
         if (story.getStories().size()>0){
             UsersStories lastStories = story.getStories().get(story.getStories().size()-1);
             Picasso.get().load(lastStories.getImage()).into(holder.binding.profileImage);
-            holder.binding.statusCircle.setPortionsCount(story.getStories().size());
+//            holder.binding.statusCircle.setPortionsCount(story.getStories().size());
 
             FirebaseDatabase.getInstance().getReference().child("Users")
                     .child(story.getStoryBy()).addValueEventListener(new ValueEventListener() {
